@@ -1,47 +1,62 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+  @section('title', 'Login · Kalmni Masri')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@include('home_header')
+  <!-- <title>Login · Kalmni Masri</title>
+    -->
+  <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <!-- login section -->
+    <section class="login-section">
+      <div class="login-card">
+        <div class="login-header">
+          <div class="brand-icon"><i class="fas fa-comment-dots"></i></div>
+          <h2>Welcome back</h2>
+          <p>Login to your Kalmni Masri account</p>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <form class="login-form" method="POST" action="#">
+          <!-- CSRF token (dummy) -->
+          <input type="hidden" name="_token" value="demo_token" />
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" name="email" placeholder="student@kalmnimasri.com" required autofocus />
+            <!-- error example (hidden) 
+            <div class="input-error"><i class="fas fa-circle-exclamation"></i> Invalid email</div>
+            -->
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required />
+            <!-- error example 
+            <div class="input-error"><i class="fas fa-circle-exclamation"></i> Wrong password</div>
+            -->
+          </div>
+
+          <!-- Remember & Forgot -->
+          <div class="form-options">
+            <label for="remember_me">
+              <input id="remember_me" type="checkbox" name="remember" checked />
+              Remember me
             </label>
-        </div>
+            <a href="{{ route('password.request') }}" class="forgot-link">Forgot password?</a>
+          </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+          <!-- Submit -->
+          <button type="submit" class="btn-login-submit">
+            <i class="fas fa-arrow-right-to-bracket"></i> Log in
+          </button>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+          <div class="login-footer-text">
+            Don't have an account? <a href="{{ route('register') }}">Sign up now</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+@include('home_footer')

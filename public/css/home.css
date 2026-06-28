@@ -726,3 +726,13 @@
     border: 2px solid var(--primary-blue);
     text-decoration: none;
 }
+
+
+.logo {
+    text-decoration: none;
+    color: inherit;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}

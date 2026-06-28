@@ -1,110 +1,165 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+  @section('title', 'Register · Kalmni Masri')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@include('home_header')
+  <!-- <title>Register · Kalmni Masri</title>
+    -->
+  <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
+
+
+    <!-- register section -->
+    <section class="register-section">
+      <div class="register-card">
+        <div class="register-header">
+          <div class="brand-icon"><i class="fas fa-user-graduate"></i></div>
+          <h2>Create your account</h2>
+          <p>Join Kalmni Masri and start speaking Egyptian Arabic</p>
         </div>
 
-        <!-- Phone Number -->
-        <div class="mt-4">
-            <x-input-label for="number" :value="__('Phone Number')" />
-            <x-text-input
-                id="number"
-                class="block mt-1 w-full"
-                type="text"
-                name="number"
-                :value="old('number')"
-                required
-            />
-            <x-input-error :messages="$errors->get('number')" class="mt-2" />
-        </div>
+<form class="register-form" method="POST" action="{{ route('register') }}">
+    @csrf
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name"><i class="fas fa-user"></i> Full Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Ahmed Hassan"
+            value="{{ old('name') }}"
+            required
+            autofocus
+        >
+        @error('name')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-        <!-- Birth Day -->
-        <div class="mt-4">
-            <x-input-label for="birth_day" :value="__('Birth Day')" />
-            <x-text-input
-                id="birth_day"
-                class="block mt-1 w-full"
+    <!-- Phone -->
+    <div class="form-group">
+        <label for="number"><i class="fas fa-phone"></i> Phone Number</label>
+        <input
+            type="text"
+            id="number"
+            name="number"
+            placeholder="01001234567"
+            value="{{ old('number') }}"
+            required
+        >
+        @error('number')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <!-- Birth Day + Gender -->
+    <div class="form-row">
+        <div class="form-group">
+            <label for="birth_day"><i class="fas fa-calendar"></i> Birth Day</label>
+            <input
                 type="date"
+                id="birth_day"
                 name="birth_day"
-                :value="old('birth_day')"
-                required
-            />
-            <x-input-error :messages="$errors->get('birth_day')" class="mt-2" />
-        </div>
-
-        <!-- Gender -->
-        <div class="mt-4">
-            <x-input-label for="gender" :value="__('Gender')" />
-            <select
-                id="gender"
-                name="gender"
-                class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                value="{{ old('birth_day') }}"
                 required
             >
-                <option value="">Select Gender</option>
+            @error('birth_day')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select</option>
                 <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
                 <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
             </select>
-            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+
+            @error('gender')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
+    </div>
 
-        <!-- Nationality -->
-        <div class="mt-4">
-            <x-input-label for="nationality" :value="__('Nationality')" />
-            <x-text-input
-                id="nationality"
-                class="block mt-1 w-full"
-                type="text"
-                name="nationality"
-                :value="old('nationality')"
-                required
-            />
-            <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
-        </div>
+    <!-- Nationality -->
+    <div class="form-group">
+        <label for="nationality"><i class="fas fa-flag"></i> Nationality</label>
+        <input
+            type="text"
+            id="nationality"
+            name="nationality"
+            placeholder="Egyptian"
+            value="{{ old('nationality') }}"
+            required
+        >
+        @error('nationality')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="ahmed@example.com"
+            value="{{ old('email') }}"
+            required
+            autocomplete="username"
+        >
+        @error('email')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <!-- Password -->
+    <div class="form-group">
+        <label for="password"><i class="fas fa-lock"></i> Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            autocomplete="new-password"
+        >
+        @error('password')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+    <!-- Confirm Password -->
+    <div class="form-group">
+        <label for="password_confirmation">
+            <i class="fas fa-check-circle"></i> Confirm Password
+        </label>
+        <input
+            type="password"
+            id="password_confirmation"
+            name="password_confirmation"
+            placeholder="Confirm your password"
+            required
+            autocomplete="new-password"
+        >
+    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <div class="form-actions">
+        <a href="{{ route('login') }}" class="btn-login-nav">
+            <i class="fas fa-arrow-left"></i> Back to Login
+        </a>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+        <button type="submit" class="btn-register-submit">
+            <i class="fas fa-user-plus"></i> Register
+        </button>
+    </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <div class="register-footer-text">
+        Already have an account?
+        <a href="{{ route('login') }}">Sign in</a>
+    </div>
+</form>
+      </div>
+    </section>
+  </div>
+@include('home_footer')
