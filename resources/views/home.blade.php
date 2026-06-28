@@ -21,11 +21,12 @@
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#features">Courses</a>
+          <a href="#skills">Skills</a>
           <!-- <a href="#free-lecture">Free Lecture</a> -->
           <a href="#contact">Contact</a>
           <div class="nav-actions">
-            <span class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</span>
-            <span class="btn-register"><i class="fas fa-user-plus"></i> Register</span>
+            <a href="{{ route('login') }}" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{{ route('register') }}" class="btn-register" style="color: white;"><i class="fas fa-user-plus"></i> Register</a>
           </div>
         </div>
       </nav>
@@ -92,6 +93,41 @@
           <i class="fas fa-rocket"></i>
           <h4>Speak in 1 month</h4>
           <p>Focused curriculum designed for rapid speaking confidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- skills -->
+    <section class="skills" id="skills">
+      <h2 class="section-title">Skills you'll build</h2>
+      <p class="section-sub">
+        A complete approach to Egyptian Arabic — every lecture strengthens all six skills.
+      </p>
+      <div class="grid-5">
+        <div class="feature-card">
+          <i class="fas fa-pen-nib"></i>
+          <h4>Writing</h4>
+          <p>Practice Arabic script and everyday written expression.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-headphones"></i>
+          <h4>Listening</h4>
+          <p>Train your ear on real Egyptian accents and pace.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-microphone"></i>
+          <h4>Speaking</h4>
+          <p>Build confidence through live, guided conversation.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-book-open"></i>
+          <h4>Reading</h4>
+          <p>Strengthen comprehension with texts at your level.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-landmark"></i>
+          <h4>Culture</h4>
+          <p>Understand the customs and context behind the language.</p>
         </div>
       </div>
     </section>
@@ -204,7 +240,7 @@
       }
 
       // interactive demo on buttons
-      const allBtns = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline, .btn-login, .btn-register, .btn-free-lecture');
+      const allBtns = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline, .btn-free-lecture');
       allBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
@@ -225,19 +261,24 @@
 
       // nav links smooth scroll + demo
       document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId.startsWith('#')) {
-            e.preventDefault();
-            const target = document.querySelector(targetId);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          } else if (targetId) {
-            e.preventDefault();
-            alert(`🔗 ${this.textContent} (demo)`);
-          }
-        });
+          link.addEventListener('click', function(e) {
+              const targetId = this.getAttribute('href');
+
+              // Only handle page sections
+              if (targetId.startsWith('#')) {
+                  e.preventDefault();
+
+                  const target = document.querySelector(targetId);
+                  if (target) {
+                      target.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                      });
+                  }
+              }
+
+              // Otherwise, let the browser follow the link normally
+          });
       });
 
     })();

@@ -1,4 +1,4 @@
-    * {
+* {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -396,6 +396,26 @@
       font-size: 0.95rem;
     }
 
+    /* skills */
+    .skills {
+      padding: 10px 0 50px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 30px;
+    }
+
+    .grid-5 .feature-card {
+      padding: 28px 20px;
+    }
+
+    .grid-5 .feature-card i {
+      font-size: 2.2rem;
+      padding: 14px;
+    }
+
     /* free lecture promo */
     .free-lecture-promo {
       background: linear-gradient(135deg, #e8f4fd, #d4e6f5);
@@ -641,6 +661,10 @@
       .free-lecture-promo h3 {
         font-size: 1.6rem;
       }
+      .grid-5 {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 18px;
+      }
     }
     @media (max-width: 750px) {
   .info-grid {
@@ -691,4 +715,14 @@
     width: 100%;          /* stack "Send message" / "WhatsApp" buttons full-width */
     text-align: center;
   }
+}
+
+
+
+.btn-login,
+.btn-login:link,
+.btn-login:visited {
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    text-decoration: none;
 }
