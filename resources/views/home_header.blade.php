@@ -20,9 +20,9 @@
             <span>Kalmni Masri</span>
         </a>
         <div class="nav-links">
-          <a href="/">About</a>
-          <a href="/">Courses</a>
-          <a href="/">Skills</a>
+          <a href="#about">About</a>
+          <!-- <a href="/">Courses</a> -->
+          <a href="#skills">Skills</a>
           <!-- <a href="#free-lecture">Free Lecture</a> -->
           <a href="#contact">Contact</a>
           <div class="nav-actions">
