@@ -1,6 +1,26 @@
-@section('title', 'Forgot Password · Kalmni Masri')
-@include('home_header')
-<link rel="stylesheet" href="{{ asset('css/forgot_passowrd.css') }}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Forgot Password · Kalmni Masri</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/forgot_password.css') }}" />
+</head>
+<body>
+
+  <div class="container">
+    <!-- header -->
+    <header>
+      <nav class="navbar">
+        <a href="{{ url('/') }}" class="logo">
+            <i class="fas fa-comment-dots"></i>
+            <span>Kalmni Masri</span>
+        </a>
+      </nav>
+    </header>
 
     <!-- reset password section -->
     <section class="reset-section">
