@@ -19,26 +19,26 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('admin')->group(function () {
+// Route::prefix('admin')->group(function () {
 
-    Route::middleware('admin.guest')->group(function () {
+//     Route::middleware('admin.guest')->group(function () {
 
-        Route::get('/login', [AdminAuthController::class, 'create'])
-            ->name('admin.login');
+//         Route::get('/login', [AdminAuthController::class, 'create'])
+//             ->name('admin.login');
 
-        Route::post('/login', [AdminAuthController::class, 'store']);
-    });
+//         Route::post('/login', [AdminAuthController::class, 'store']);
+//     });
 
-    Route::middleware('admin')->group(function () {
+//     Route::middleware('admin')->group(function () {
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])
-            ->name('admin.dashboard');
+//         Route::get('/dashboard', [DashboardController::class, 'index'])
+//             ->name('admin.dashboard');
 
-        Route::post('/logout', [AdminAuthController::class, 'destroy'])
-            ->name('admin.logout');
+//         Route::post('/logout', [AdminAuthController::class, 'destroy'])
+//             ->name('admin.logout');
 
-    });
+//     });
 
-});
+// });
 
 require __DIR__.'/auth.php';
