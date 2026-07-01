@@ -9,9 +9,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/course', function () {
-    return view('course');
-})->middleware(['auth', 'verified'])->name('course');
+Route::get('/packages', function () {
+    // user.name
+    $name = auth()->user()->name;
+    return view('packages',compact('name'));
+})->middleware(['auth', 'verified'])->name('packages');
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

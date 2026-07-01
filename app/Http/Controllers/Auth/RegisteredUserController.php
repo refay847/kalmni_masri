@@ -54,6 +54,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('course', absolute: false));
+        return redirect(route('packages', absolute: false));
     }
 }
