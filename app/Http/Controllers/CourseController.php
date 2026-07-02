@@ -12,5 +12,12 @@ class CourseController extends Controller
 
         return view('packages', compact('name'));
     }
+
+    public function freeLecture()
+    {
+        $name = auth()->user()->name;
+
+        return view('free_lecture', compact('name'));
+    }
     
 }

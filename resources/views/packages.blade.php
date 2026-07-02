@@ -1,4 +1,9 @@
+
+@section('title', 'Packages · Kalmni Masri')
+
 @include('course_header')
+    <link rel="stylesheet" href="{{ asset('css/packages.css') }}" />
+
         <!-- packages section -->
         <section class="packages-section" id="packages">
             <div class="packages-header">
@@ -70,117 +75,3 @@
     </div>
 @include('home_footer')
 
-    <script>
-        (function() {
-            // Dynamic year
-            const footerCopy = document.querySelector('.footer-copy');
-            if (footerCopy) {
-                const year = new Date().getFullYear();
-                footerCopy.textContent = footerCopy.textContent.replace('2026', year);
-            }
-
-            // ===== USER DROPDOWN =====
-            const dropdown = document.getElementById('userDropdown');
-            const badge = document.getElementById('userBadge');
-            const menu = document.getElementById('dropdownMenu');
-            const chevron = document.getElementById('chevronIcon');
-
-            // Toggle dropdown on badge click
-            badge.addEventListener('click', function(e) {
-                e.stopPropagation();
-                menu.classList.toggle('active');
-                chevron.classList.toggle('open');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!dropdown.contains(e.target)) {
-                    menu.classList.remove('active');
-                    chevron.classList.remove('open');
-                }
-            });
-
-            // Close dropdown on ESC key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    menu.classList.remove('active');
-                    chevron.classList.remove('open');
-                }
-            });
-
-            // smooth scroll for nav links
-            document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId && targetId.startsWith('#')) {
-                        e.preventDefault();
-                        const target = document.querySelector(targetId);
-                        if (target) {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }
-                });
-            });
-
-            console.log('👤 User dropdown active — click your name to open menu');
-        })();
-        // ===== ACTIVE TAB FUNCTIONALITY =====
-document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.nav-tab');
-    
-    // Function to set active tab
-    function setActiveTab(activeTab) {
-        tabs.forEach(tab => {
-            tab.classList.remove('active');
-        });
-        activeTab.classList.add('active');
-    }
-    
-    // Click handler for tabs
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function(e) {
-            // Don't prevent default for real navigation
-            // Just update the active state
-            
-            // Remove active from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            // Add active to clicked tab
-            this.classList.add('active');
-            
-            // Store in localStorage to persist across page loads
-            const tabText = this.textContent.trim();
-            localStorage.setItem('activeTab', tabText);
-            
-            // If it's a hash link, smooth scroll
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-    
-    // Restore active tab from localStorage
-    const savedTab = localStorage.getItem('activeTab');
-    if (savedTab) {
-        tabs.forEach(tab => {
-            if (tab.textContent.trim() === savedTab) {
-                tab.classList.add('active');
-            }
-        });
-    }
-    
-    // Highlight current page based on URL
-    const currentPath = window.location.pathname;
-    tabs.forEach(tab => {
-        const href = tab.getAttribute('href');
-        if (href && !href.startsWith('#') && currentPath.includes(href)) {
-            tab.classList.add('active');
-        }
-    });
-});
-    </script>

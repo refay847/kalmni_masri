@@ -11,6 +11,8 @@ Route::get('/', function () {
 });
 
 Route::get('/packages',[CourseController::class, 'packages'])->middleware(['auth', 'verified'])->name('packages');
+Route::get('/free_lecture',[CourseController::class, 'freeLecture'])->middleware(['auth', 'verified'])->name('free-lecture');
+
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
